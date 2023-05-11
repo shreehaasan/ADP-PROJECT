@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+
+    <script>
+
+       
+	function addcustomer(str) {
+	 
+         document.getElementById( 'addcustomer' ).style.display = 'block';
+	 
+    	   document.getElementById( 'listcustomer' ).style.display = 'none';
+		document.getElementById( 'phoneser' ).style.display = 'none';
+		document.getElementById( 'fnameser1' ).style.display = 'none';
+        }
+	function listcustomer(str) {
+	  
+         document.getElementById( 'listcustomer' ).style.display = 'block';
+   	   document.getElementById( 'addcustomer' ).style.display = 'none';
+	 
+		document.getElementById( 'phoneser' ).style.display = 'none';
+		document.getElementById( 'fnameser1' ).style.display = 'none';
+        }
+	 function showCustomerphone(str) {
+		
+		document.getElementById( 'phoneser' ).style.display = 'block';
+		document.getElementById( 'fnameser1' ).style.display = 'none';
+	
+            document.getElementById( 'addcustomer' ).style.display = 'none';
+    		document.getElementById( 'listcustomer' ).style.display = 'none';
+        }
+ 	function showCustomername(str) {
+		
+		document.getElementById( 'fnameser1' ).style.display = 'block';
+		document.getElementById( 'phoneser' ).style.display = 'none';
+		
+            document.getElementById( 'addcustomer' ).style.display = 'none';
+    		document.getElementById( 'listcustomer' ).style.display = 'none';
+
+
+        }
+
+
+
+    </script>
+
+<style>
+body {
+  background-color: lightblue;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #38444d;
+}
+
+li {
+  float: left;
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
+</head>
+<body>
+    <h1 align="center">Student Registration</h1>
+<ul><li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Master</a>
+    <div class="dropdown-content">
+      <a href="javascript:addcustomer()" > User Entry</a>
+    </div>
+  </li>
+ <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Report</a>
+    <div class="dropdown-content">
+  	<a href="javascript:listcustomer()">All Student Report</a>
+      <a href="javascript:showCustomername()">By Name Search</a>
+ 	<a href="javascript:showCustomerphone()">By Phone Search</a>
+
+     
+    </div>
+  </li>
+<li><a href="./login.htm">Exit</a></li>
+  
+</ul>
+
+<!-- LIST customer By pHONE=====start==========================================  -->
+<div id="phoneser"  style="display:none;">
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+</style>
+<script>
+function fnameser() {
+
+let fnameser = document.getElementById("fnameser").value;
+
+
+
+document.getElementById("msgfname").innerHTML = "";
+ text1 = "<table style='width:100%'><tr><th>Email</th><th>Firstname</th><th>Lastname</th><th>Phone</th><th>Qualification</th></tr>";
+
+
+ var retrievedData = localStorage.getItem("userList");
+  		var arr = JSON.parse(retrievedData);
+    let obj = arr.find((o, i) => {
+   
+   if (o.fname.indexOf(fnameser) > -1 || o.lname.indexOf(fnameser) > -1) {
+
+text1=text1+"<tr><td>"+o.email+"</td><td>"+o.fname+"</td><td>"+o.lname+"</td><td>"+o.phone+"</td><td>"+o.qualification+"</td></tr>";
+
+   }
+  });
+ text1=text1+"</table>";
+//document.getElementById('msgfname').innerHtml = text1;
+document.getElementById("msgfname").innerHTML = text1;
+
+}
+
+//phoneser
+function phoneser() {
+
+
+let phoneser1 = document.getElementById("phoneser1").value;
+
+
+let text1 ="";
+document.getElementById("msgphone").innerHTML = "";
+
+ text1 = "<table style='width:100%'><tr><th>Email</th><th>Firstname</th><th>Lastname</th><th>Phone</th><th>Qualification</th></tr>";
+
+
+ var retrievedData = localStorage.getItem("userList");
+  		var arr = JSON.parse(retrievedData);
+
+    let obj = arr.find((o, i) => {
+
+   if (o.phone.indexOf(phoneser1) > -1) {
+
+
+text1=text1+"<tr><td>"+o.email+"</td><td>"+o.fname+"</td><td>"+o.lname+"</td><td>"+o.phone+"</td><td>"+o.qualification+"</td></tr>";
+
+   }
+  });
+ text1=text1+"</table>";
+
+document.getElementById("msgphone").innerHTML = text1;
+
+}
+
+function myFunction123() {
+
+
+let text1 ="";
+document.getElementById("msg").innerHTML = "";
+ text1 = "<table style='width:100%'><tr><th>Email</th><th>Firstname</th><th>Lastname</th><th>Phone</th><th>Qualification</th></tr>";
+
+
+ var retrievedData = localStorage.getItem("userList");
+  		var arr = JSON.parse(retrievedData);
+    let obj = arr.find((o, i) => {
+ 
+
+text1=text1+"<tr><td>"+o.email+"</td><td>"+o.fname+"</td><td>"+o.lname+"</td><td>"+o.phone+"</td><td>"+o.qualification+"</td></tr>";
+
+
+  });
+ text1=text1+"</table>";
+//document.getElementById('msg').innerHtml = text1;
+document.getElementById("msg").innerHTML = text1;
+
+}
+
+</script>
+</head>
+<body>
+
+
+<h2>Student Search By Phone</h2>
+<p>
+ First Name <input type="text" id="phoneser1" name="phoneser1">
+ 
+</p>
+<p>
+ <input type="button" value="User Report" onclick="phoneser()">
+</p>
+<div id="msgphone">Report.....</div>
+ 
+
+
+</body>
+</html>
+
+</div>
+<!-- LIST customer =====end==========================================  -->
+
+<!-- LIST customer By Name=====start==========================================  -->
+<div id="fnameser1"  style="display:none;">
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+</style>
+<script>
+function myFunction123() {
+let emaser = document.getElementById("emaser").value;
+let phoser = document.getElementById("phoser").value;
+
+let text1 ="";
+document.getElementById("msg").innerHTML = "";
+ text1 = "<table style='width:100%'><tr><th>Email</th><th>Firstname</th><th>Lastname</th><th>Phone</th><th>Qualification</th></tr>";
+
+
+ var retrievedData = localStorage.getItem("userList");
+  		var arr = JSON.parse(retrievedData);
+    let obj = arr.find((o, i) => {
+
+   if (o.email.indexOf(emaser) > -1  || o.phoser.indexOf(phoser) > -1) {
+  
+text1=text1+"<tr><td>"+o.email+"</td><td>"+o.fname+"</td><td>"+o.lname+"</td><td>"+o.phone+"</td><td>"+o.qualification+"</td></tr>";
+
+   }
+  });
+ text1=text1+"</table>";
+
+document.getElementById("msg").innerHTML = text1;
+
+}
+
+</script>
+</head>
+<body>
+
+
+<h2>Student Search By Name</h2>
+<p>
+ First Name <input type="text" id="fnameser" name="fnameser">
+ 
+</p>
+<p>
+ <input type="button" value="User Report" onclick="fnameser()">
+</p>
+<div id="msgfname">Report.....</div>
+ 
+
+
+</body>
+</html>
+
+</div>
+<!-- LIST customer =====end==========================================  -->
+
+
+
+<!-- LIST customer by name  =====start==========================================  -->
+<div id="listcustomer"  style="display:none;">
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+</style>
+<script>
+function myFunction123() {
+//alert("remove iteam");
+//localStorage.removeItem("userList");
+
+let text1 ="";
+document.getElementById("msgall").innerHTML = "";
+ text1 = "<table style='width:100%'><tr><th>Email</th><th>Firstname</th><th>Lastname</th><th>Phone</th><th>Qualification</th></tr>";
+ var retrievedData = localStorage.getItem("userList");
+  		var arr = JSON.parse(retrievedData);
+    let obj = arr.find((o, i) => {
+
+text1=text1+"<tr><td>"+o.email+"</td><td>"+o.fname+"</td><td>"+o.lname+"</td><td>"+o.phone+"</td><td>"+o.qualification+"</td></tr>";
+
+
+  });
+
+ text1=text1+"</table>";
+
+document.getElementById("msgall").innerHTML = text1;
+}
+
+</script>
+</head>
+<body>
+
+
+<h2>All Student</h2>
+<p>
+Click On Button to Generate Report All Student
+</p>
+<p>
+ <input type="button" value="User Report" onclick="myFunction123()">
+</p>
+<div id="msgall">Report.....</div>
+ 
+
+
+</body>
+</html>
+
+</div>
+<!-- LIST customer =====end==========================================  -->
+<!-- ADD customer =====start==========================================  -->
+<div id="addcustomer"  style="display:none;">
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.btest{
+    height:25px;
+    width:85px;
+}
+
+</style>
+<script>
+function userFunction() {
+
+ let email = document.getElementById("email").value;
+ let fname = document.getElementById("fname").value; 
+ let lname = document.getElementById("lname").value; 
+ let address = document.getElementById("address").value; 
+ let phone = document.getElementById("phone").value; 
+let qualification = document.getElementById("qualification").value; 
+
+
+   let user = {
+		email: email,
+            fname: fname,
+            lname: lname, 
+            address: address,
+  		phone: phone,
+		qualification: qualification,
+		
+        }
+     
+   let userList = []
+
+        const getCarStorage = localStorage.getItem('userList')
+        if(getCarStorage){
+            userList = JSON.parse(localStorage.getItem('userList'))
+            userList.push(user)
+            window.localStorage.setItem('userList', JSON.stringify(userList))
+        }else{
+            userList.push(user)
+            window.localStorage.setItem('userList', JSON.stringify(userList))
+        }
+        
+
+        
+       // localStorage.removeItem('userList');
+        var retrievedData = window.localStorage.getItem("userList");
+  		var arr = JSON.parse(retrievedData);
+
+        
+      
+  
+   
+        
+        
+}
+function cancelform(){
+document.forms["myForm"]["email"].value="";
+document.forms["myForm"]["fname"].value="";
+document.forms["myForm"]["lname"].value="";
+document.forms["myForm"]["address"].value="";
+document.forms["myForm"]["phone"].value="";
+document.forms["myForm"]["qualification"].value="";
+
+}
+function validateForm() {
+
+  let email= document.forms["myForm"]["email"].value;
+  let fname = document.forms["myForm"]["fname"].value;
+  let lname = document.forms["myForm"]["lname"].value;
+  let address = document.forms["myForm"]["address"].value;
+  let phone = document.forms["myForm"]["phone"].value;
+  let qualification=document.forms["myForm"]["qualification"].value;
+
+if (email == "") {
+    alert("email must be filled out");
+	document.myForm.email.focus();
+    return false;
+  }
+
+      var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	if(!email.match(mailformat)){
+  	alert("Not correct email ID");
+	 document.myForm.email.focus();
+ 		return false;
+	}
+  if (fname == "") {
+    alert("First Name must be filled out");
+	document.myForm.fname.focus();
+    return false;
+  }
+ if (lname == "") {
+    alert("Last Name must be filled out ");
+	document.myForm.lname.focus();
+    return false;
+  }
+ if (address == "") {
+    alert("address must be filled out ");
+    document.myForm.address.focus();
+    return false;
+  }
+ if (phone == "") {
+    alert("phone must be filled out ");
+    document.myForm.phone.focus();
+    return false;
+  }
+
+
+var phoneno = /^\d{10}$/;
+  if(!phone.match(phoneno))
+  {
+   alert("phone must number with 10 digit ");
+ document.myForm.phone.focus();
+        return false;
+  }
+
+ if(qualification == "") {
+    alert("qualification must be filled out ");
+ 	document.myForm.qualification.focus();
+    return false;
+  }
+
+	userFunction();
+return window.location.replace("./menu.htm");
+}
+</script>
+</head>
+<body>
+
+<h2>Student Entry</h2> 
+
+
+<form name="myForm"  method="post">
+
+ <table>
+    <tr>
+      <td align="right">Email:</td>
+      <td align="left"><input type="text" id="email" name="email"></td>
+    </tr>
+    <tr>
+      <td align="right">First Name:</td>
+      <td align="left"><input type="text" id="fname" name="fname"></td>
+    </tr>
+    <tr>
+      <td align="right">Last Name:</td>
+      <td align="left"><input type="text" id="lname" name="lname"></td>
+    </tr>
+    <tr>
+      <td align="right">Address:</td>
+      <td align="left"><input type="text" id="address" name="address"></td>
+    </tr>
+     <tr>
+      <td align="right">phone:</td>
+      <td align="left"><input type="text" id="phone" name="phone"></td>
+    </tr>
+   <tr>
+      <td align="right">Qualification:</td>
+      <td align="left"><input type="text" id="qualification" name="qualification"></td>
+    </tr>
+   <tr>
+      <td align="right"></td>
+      <td align="right"> <input type="button" value="Cancel" class="btest" onclick="cancelform()"><input type="button" value="Submit" class="btest" onclick="validateForm()"></td>
+    </tr>
+  </table>
+
+ 
+</form>
+
+</body>
+</html>
+
+</div>
+<!-- ADD customer =====end==========================================  -->
+<!-- report page =====start==========================================  -->
+
+<!-- report page =====end==========================================  -->
+
+</body>
+</html>
+
+
